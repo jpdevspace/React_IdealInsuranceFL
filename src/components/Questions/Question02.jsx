@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Question02 = ({ updateAnswer, plan }) => {
-  // TODO JP: Create a useEffect to load initial values for checkboxes
   const [ selected, setSelected ] = useState({
     health: false,
     dental: false,
@@ -9,21 +8,30 @@ const Question02 = ({ updateAnswer, plan }) => {
     medicare: false,
     lifeInsurance: false
   });
+
+  useEffect(() => {
+    if (plan) {
+      setSelected(plan);
+    }
+  }, [])
+
+  useEffect(() => {
+    updateAnswer(selected)
+  }, [ selected ]);
+
   const language = "english";
   const question = {
     spanish: "Qué tipo de plan está buscando? Marque todas las que apliquen.",
-    english: "What type of plans are you looking htmlFor? Check all that apply.",
+    english: "What type of plans are you looking for? Check all that apply.",
   };
 
   const handleChange = e => {
     const { checked, name } = e.target;
+
     setSelected({
       ...selected,
       [name]: checked
     });
-
-
-    // TODO JP: create a string list with all chekd options to call updateAnswer()
   };
 
   return (

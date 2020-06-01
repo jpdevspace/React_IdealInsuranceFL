@@ -67,14 +67,15 @@ const Card = () => {
   });
   const numberOfQuestions = Object.keys(info).length;
 
-  const handleAnswer = (newAnswer) =>
+  const handleAnswer = (newAnswer) => (
     setInfo({
       ...info,
       [currQuestion]: {
         ...[info[currQuestion]],
         answer: newAnswer,
       },
-    });
+    })
+  );
 
   const questionComponent = () => {
     switch (currQuestion) {
@@ -155,7 +156,7 @@ const Card = () => {
     // Show message that questions hasn't been answered
   };
 
-
+  // TODO JP: create a function to format the answers before sending email
 
   return (
     <div id="card">
