@@ -87,7 +87,9 @@ const Card = () => {
         );
       case 3:
         return (
-          <Question03 updateAnswer={(newAnswer) => handleAnswer(newAnswer)} />
+          <Question03 
+            updateAnswer={(newAnswer) => handleAnswer(newAnswer)}
+            income={info[3].answer} />
         );
       case 4:
         return (
