@@ -1,13 +1,25 @@
 import React, { Fragment, useEffect, useState } from "react";
+import useRadioList from "./useRadioList";
 
-const Question03 = ({ updateAnswer, income }) => {
-  const [ checkedOpt, setCheckedOpt ] = useState("");
+const Question03 = ({ updateAnswer, currAnswer }) => {
+  const incomeOpts = {
+    tier1: "0 - 15000",
+    tier2: "15001 - 20000",
+    tier3: "20001 - 25000",
+    tier4: "25001 - 30000",
+    tier5: "30001 - 35000",
+    tier6: "35001 - 40000",
+    tier7: "45001 - 50000",
+    tier8: "50001+",
+  };
+
+  const [ selection, IncomeRadioList, setSelection ] = useRadioList("Income", incomeOpts);
 
   useEffect(() => {
-    if (income) {
-      setCheckedOpt(income);
-    }
-  }, [income]);
+    // Radio buttons can't be unselected, so if there's a selection
+    // it's safe to make it true
+    updateAnswer(selection, selection.length > 0);
+  }, [selection]);
   
   const language = "english";
   const question = {
@@ -15,50 +27,10 @@ const Question03 = ({ updateAnswer, income }) => {
     english: "What is your total household income?",
   };
 
-  const handleChange = (e) => {
-    const { id } = e.target;
-
-    setCheckedOpt(id);
-
-    updateAnswer(id);
-  };
-
-  const loadOpts = () => {
-    let opts = [];
-    const incomeOpts = {
-      tier1: "0 - 15000",
-      tier2: "15001 - 20000",
-      tier3: "20001 - 25000",
-      tier4: "25001 - 30000",
-      tier5: "30001 - 35000",
-      tier6: "35001 - 40000",
-      tier7: "45001 - 50000",
-      tier8: "50001+",
-    };
-
-    for (const opt in incomeOpts) {
-      opts.push(
-        <Fragment key={opt}>
-          <input
-            onChange={(e) => handleChange(e)}
-            type="radio"
-            id={opt}
-            name="income"
-            value={incomeOpts[opt]}
-            checked={opt === checkedOpt}
-          />
-          <label htmlFor={opt}>{incomeOpts[opt]}</label>
-        </Fragment>
-      );
-    }
-
-    return opts;
-  };
-
   return (
     <>
       <h3>{question[language]}</h3>
-      { loadOpts() }
+      <IncomeRadioList />
     </>
   );
 };

@@ -10,7 +10,7 @@ import Question05           from "./Questions/Question05";
 import Question06           from "./Questions/Question06";
 
 const Card = () => {
-  const [currQuestion, setCurrQuestion] = useState(2);
+  const [currQuestion, setCurrQuestion] = useState(3);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
@@ -96,14 +96,14 @@ const Card = () => {
       case 2:
         return (
           <Question02 
-            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)} 
+            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
             currAnswer={info[2].answer} />
         );
       case 3:
         return (
           <Question03 
-            updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}
-            income={info[3].answer} />
+            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
+            currAnswer={info[3].answer} />
         );
       case 4:
         return (

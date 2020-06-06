@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const useRadioList = ({ label, optsObj }) => {
-  const [ selected, setSelected ] = useState("")
-  const id = `use-radioList-${label}`;
+const useRadioList = (label, optsObj) => {
+  const [ selected, setSelected ] = useState("");
+  const id = `use-radioList-${label.replace(" ", "").toLowerCase()}`;
 
   const RadioList = () => (
     <form id={id}>
@@ -10,20 +10,21 @@ const useRadioList = ({ label, optsObj }) => {
         Object.keys(optsObj).map(opt => (
           <label htmlFor={opt} key={opt}>
             <input
-              onChange={(e) => setSelected(e.target.name)}
+              onChange={(e) => setSelected(e.target.value)}
               type="radio"
               id={opt}
-              name={opt}
-              checked={selected === opt}
+              name={id}
+              value={optsObj[opt]}
+              checked={selected === optsObj[opt]}
             />
-            { opt }
+            { optsObj[opt] }
           </label>
         ))
       }
     </form>
   );
 
-  return (selected, RadioList, setSelected);
+  return [selected, RadioList, setSelected];
 };
 
 export default useRadioList;
