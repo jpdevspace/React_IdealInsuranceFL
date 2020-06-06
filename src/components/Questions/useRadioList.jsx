@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const useRadioList = (label, optsObj) => {
-  const [ selected, setSelected ] = useState("");
+const useRadioList = (label, initialSelection, optsObj) => {
+  const [ selected, setSelected ] = useState(initialSelection);
   const id = `use-radioList-${label.replace(" ", "").toLowerCase()}`;
 
   const RadioList = () => (

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useRadioList from "./useRadioList";
 
 const Question03 = ({ updateAnswer, currAnswer }) => {
@@ -13,12 +13,13 @@ const Question03 = ({ updateAnswer, currAnswer }) => {
     tier8: "50001+",
   };
 
-  const [ selection, IncomeRadioList, setSelection ] = useRadioList("Income", incomeOpts);
+  const [ selection, IncomeRadioList, setSelection ] = useRadioList("Income", currAnswer, incomeOpts);
 
   useEffect(() => {
     // Radio buttons can't be unselected, so if there's a selection
     // it's safe to make it true
     updateAnswer(selection, selection.length > 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selection]);
   
   const language = "english";

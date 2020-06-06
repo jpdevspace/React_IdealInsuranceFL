@@ -38,7 +38,7 @@ const Card = () => {
     },
     3: {
       question: "House Hold Income",
-      answer: null,
+      answer: "",
       component: {
         english: "Question03",
         spanish: "Pregunta03",
