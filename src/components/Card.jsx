@@ -10,7 +10,7 @@ import Question05           from "./Questions/Question05";
 import Question06           from "./Questions/Question06";
 
 const Card = () => {
-  const [currQuestion, setCurrQuestion] = useState(1);
+  const [currQuestion, setCurrQuestion] = useState(2);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
@@ -23,7 +23,13 @@ const Card = () => {
     },
     2: {
       question: "Plan",
-      answer: null,
+      answer: {
+        health: false,
+        dental: false,
+        vision: false,
+        medicare: false,
+        lifeInsurance: false
+      },
       component: {
         english: "Question02",
         spanish: "Pregunta02",
@@ -90,8 +96,8 @@ const Card = () => {
       case 2:
         return (
           <Question02 
-            updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}
-            plan={info[2].answer} />
+            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)} 
+            currAnswer={info[2].answer} />
         );
       case 3:
         return (

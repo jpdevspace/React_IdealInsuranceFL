@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-const Question02 = ({ updateAnswer, plan }) => {
-  const [ selected, setSelected ] = useState({
-    health: false,
-    dental: false,
-    vision: false,
-    medicare: false,
-    lifeInsurance: false
-  });
+const Question02 = ({ updateAnswer, currAnswer }) => {
+  const [ selection, setSelection ] = useState(currAnswer);
 
   useEffect(() => {
-    if (plan) {
-      setSelected(plan);
-    }
-  }, [])
-
-  useEffect(() => {
-    updateAnswer(selected)
-  }, [ selected ]);
+    // Checks if user made a selection 
+    // any of the values in the selection object is true.
+    const isAnswered = Object.keys(selection).some(val => selection[val] === true);
+    
+    updateAnswer(selection, isAnswered);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ selection ]);
 
   const language = "english";
   const question = {
@@ -28,8 +21,8 @@ const Question02 = ({ updateAnswer, plan }) => {
   const handleChange = e => {
     const { checked, name } = e.target;
 
-    setSelected({
-      ...selected,
+    setSelection({
+      ...selection,
       [name]: checked
     });
   };
@@ -37,54 +30,22 @@ const Question02 = ({ updateAnswer, plan }) => {
   return (
     <>
       <h3>{question[language]}</h3>
-      <input
-        onChange={(e) => handleChange(e)}
-        type="checkbox"
-        id="health"
-        name="health"
-        checked={selected.health}
-      />
-      <label htmlFor="health">
-        {language === "english" ? "Health" : "Salud"}
-      </label>
-
-      <input
-        onChange={(e) => handleChange(e)}
-        type="checkbox"
-        id="dental"
-        name="dental"
-        checked={selected.dental}
-      />
-      <label htmlFor="dental">Dental</label>
-
-      <input
-        onChange={(e) => handleChange(e)}
-        type="checkbox"
-        id="vision"
-        name="vision"
-        checked={selected.vision}
-      />
-      <label htmlFor="vision">Vision</label>
-
-      <input
-        onChange={(e) => handleChange(e)}
-        type="checkbox"
-        id="medicare"
-        name="medicare"
-        checked={selected.medicare}
-      />
-      <label htmlFor="medicare">Medicare</label>
-
-      <input
-        onChange={(e) => handleChange(e)}
-        type="checkbox"
-        id="lifeInsurance"
-        name="lifeInsurance"
-        checked={selected.lifeInsurance}
-      />
-      <label htmlFor="lifeInsurance">
-        {language === "english" ? "Life insurance" : "Seguro de vida"}
-      </label>
+      <form id="use-radioList-plans">
+        {
+          Object.keys(currAnswer).map(opt => (
+            <label htmlFor={opt} key={opt}>
+              <input
+                onChange={(e) => handleChange(e)}
+                type="checkbox"
+                id={opt}
+                name={opt}
+                checked={selection[opt]}
+              />
+              { opt }
+            </label>
+          ))
+        }
+      </form>
     </>
   );
 };
