@@ -14,11 +14,12 @@ const Card = () => {
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
+      answer: null,
       component: {
         english: "Question01",
         spanish: "Pregunta01",
       },
-      answer: 32824,
+      isAnswered: false
     },
     2: {
       question: "Plan",
@@ -27,6 +28,7 @@ const Card = () => {
         english: "Question02",
         spanish: "Pregunta02",
       },
+      isAnswered: false
     },
     3: {
       question: "House Hold Income",
@@ -35,6 +37,7 @@ const Card = () => {
         english: "Question03",
         spanish: "Pregunta03",
       },
+      isAnswered: false
     },
     4: {
       question: "Number of people in household",
@@ -43,6 +46,7 @@ const Card = () => {
         english: "Question04",
         spanish: "Pregunta04",
       },
+      isAnswered: false
     },
     5: {
       question: "People included in coverage",
@@ -51,6 +55,7 @@ const Card = () => {
         english: "Question05",
         spanish: "Pregunta05",
       },
+      isAnswered: false
     },
     6: {
       question: "About",
@@ -63,16 +68,19 @@ const Card = () => {
         english: "Question06",
         spanish: "Pregunta06",
       },
+      isAnswered: false
     },
   });
   const numberOfQuestions = Object.keys(info).length;
 
-  const handleAnswer = (newAnswer) => (
+  // Function to update the "answer" and "isAnswered" fields in state
+  const handleQuestionUpdate = (newAnswer, newIsAnswered) => (
     setInfo({
       ...info,
       [currQuestion]: {
         ...[info[currQuestion]],
         answer: newAnswer,
+        isAnswered: newIsAnswered
       },
     })
   );
@@ -82,32 +90,32 @@ const Card = () => {
       case 2:
         return (
           <Question02 
-            updateAnswer={(newAnswer) => handleAnswer(newAnswer)}
+            updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}
             plan={info[2].answer} />
         );
       case 3:
         return (
           <Question03 
-            updateAnswer={(newAnswer) => handleAnswer(newAnswer)}
+            updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}
             income={info[3].answer} />
         );
       case 4:
         return (
-          <Question04 updateAnswer={(newAnswer) => handleAnswer(newAnswer)}  />
+          <Question04 updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}  />
         );
       case 5:
         return (
-          <Question05 updateAnswer={(newAnswer) => handleAnswer(newAnswer)}  />
+          <Question05 updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}  />
         );
       case 6:
         return (
-          <Question06 updateAnswer={(newAnswer) => handleAnswer(newAnswer)} />
+          <Question06 updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)} />
         );
       default:
         return (
           <Question01
-            updateAnswer={(newAnswer) => handleAnswer(newAnswer)}
-            zipCode={info[1].answer} />
+            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)} 
+            currAnswer={info[1].answer} />
         );
     };
   };
@@ -124,27 +132,7 @@ const Card = () => {
   };
 
   const goToNextQuestion = () => {
-    const { 
-      age = null,
-      answer = null,
-      dob = null,
-      gender = null,
-      name = null,
-      phone = null } = info[currQuestion] || {};
-
-    // Check if user answered the question 
-    // it's != for first 5 question than for the last one
-    const isAnsweredQuestion = currQuestion < 6 && answer;
-    const isAnsweredLastQuestion = (
-          currQuestion === 6
-      &&  name
-      &&  phone
-      &&  age
-      &&  gender
-      &&  dob
-    );
-
-    if (isAnsweredQuestion || isAnsweredLastQuestion) {
+    if (info[currQuestion].isAnswered) {
       // Make sure it doesn't go > the number of questions
       let nextQuestion = currQuestion + 1;
   
