@@ -13,7 +13,7 @@ const Question03 = ({ updateAnswer, currAnswer }) => {
     tier8: "50001+",
   };
 
-  const [ selection, IncomeRadioList, setSelection ] = useRadioList("Income", currAnswer, incomeOpts);
+  const [ selection, IncomeRadioList ] = useRadioList("Income", currAnswer, incomeOpts);
 
   useEffect(() => {
     // Radio buttons can't be unselected, so if there's a selection
