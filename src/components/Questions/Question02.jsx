@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import LanguageContext from "../../Context/LanguageContext";
 
 const Question02 = ({ updateAnswer, currAnswer }) => {
   const [ selection, setSelection ] = useState(currAnswer);
+  const [ language ] = useContext(LanguageContext);
 
   useEffect(() => {
     // Checks if user made a selection 
@@ -9,14 +11,30 @@ const Question02 = ({ updateAnswer, currAnswer }) => {
     const isAnswered = Object.keys(selection).some(val => selection[val] === true);
     
     updateAnswer(selection, isAnswered);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ selection ]);
 
-  const language = "english";
   const question = {
     spanish: "Qué tipo de plan está buscando? Marque todas las que apliquen.",
     english: "What type of plans are you looking for? Check all that apply.",
   };
+
+  const options = {
+    spanish: {
+      health: "Salud",
+      dental: "Dental",
+      vision: "Visión",
+      medicare: "Medicare",
+      lifeInsurance: "Seguro de Vida"
+    },
+    english: {
+      health: "Health",
+      dental: "Dental",
+      vision: "Vision",
+      medicare: "Medicare",
+      lifeInsurance: "Life Insurance"
+    }
+  }
 
   const handleChange = e => {
     const { checked, name } = e.target;
@@ -41,7 +59,7 @@ const Question02 = ({ updateAnswer, currAnswer }) => {
                 name={opt}
                 checked={selection[opt]}
               />
-              { opt }
+              { options[language][opt] }
             </label>
           ))
         }

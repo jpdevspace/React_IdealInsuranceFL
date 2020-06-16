@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import LanguageContext from "../../Context/LanguageContext";
 
 const Question01 = ({ updateAnswer, currAnswer }) => {
-  const [ language, setLanguage ] = useContext(LanguageContext);
-  console.log("Language >>>", language);
-  // const language = "english";
+  const [ language ] = useContext(LanguageContext);
+
   const question = {
     spanish: "Compare planes accequibles y obtenga la mejor cobertura.",
     english: "Compare affordable plans and get the best coverage." 

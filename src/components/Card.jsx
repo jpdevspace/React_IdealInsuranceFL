@@ -15,10 +15,6 @@ const Card = () => {
     1: {
       question: "Zip Code",
       answer: null,
-      component: {
-        english: "Question01",
-        spanish: "Pregunta01",
-      },
       isAnswered: false
     },
     2: {
@@ -30,37 +26,21 @@ const Card = () => {
         medicare: false,
         lifeInsurance: false
       },
-      component: {
-        english: "Question02",
-        spanish: "Pregunta02",
-      },
       isAnswered: false
     },
     3: {
       question: "House Hold Income",
-      answer: "",
-      component: {
-        english: "Question03",
-        spanish: "Pregunta03",
-      },
+      answer: 0,
       isAnswered: false
     },
     4: {
       question: "Number of people in household",
-      answer: null,
-      component: {
-        english: "Question04",
-        spanish: "Pregunta04",
-      },
+      answer: 0,
       isAnswered: false
     },
     5: {
       question: "People included in coverage",
-      answer: null,
-      component: {
-        english: "Question05",
-        spanish: "Pregunta05",
-      },
+      answer: 0,
       isAnswered: false
     },
     6: {
@@ -70,10 +50,6 @@ const Card = () => {
       age: "",
       gender: "",
       dob: "",
-      component: {
-        english: "Question06",
-        spanish: "Pregunta06",
-      },
       isAnswered: false
     },
   });
@@ -107,7 +83,9 @@ const Card = () => {
         );
       case 4:
         return (
-          <Question04 updateAnswer={(newAnswer) => handleQuestionUpdate(newAnswer)}  />
+          <Question04
+            updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
+            currAnswer={info[4].answer} />
         );
       case 5:
         return (

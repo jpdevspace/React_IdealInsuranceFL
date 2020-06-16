@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import useRadioList from "./useRadioList";
+import LanguageContext from "../../Context/LanguageContext";
 
 const Question03 = ({ updateAnswer, currAnswer }) => {
+  const [ language ] = useContext(LanguageContext);
+
   const incomeOpts = {
     tier1: "0 - 15000",
     tier2: "15001 - 20000",
@@ -17,12 +20,12 @@ const Question03 = ({ updateAnswer, currAnswer }) => {
 
   useEffect(() => {
     // Radio buttons can't be unselected, so if there's a selection
-    // it's safe to make it true
+    // it's safe to make it true. Here selection is the label of the
+    // selected element. e.g. "15001 - 20000"
     updateAnswer(selection, selection.length > 0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selection]);
-  
-  const language = "english";
+
   const question = {
     spanish: "Cuánto es el ingreso total de su hogar?",
     english: "What is your total household income?",
