@@ -5,8 +5,14 @@ const Question01 = ({ updateAnswer, currAnswer }) => {
   const [ language ] = useContext(LanguageContext);
 
   const question = {
-    spanish: "Compare planes accequibles y obtenga la mejor cobertura.",
-    english: "Compare affordable plans and get the best coverage." 
+    spanish: {
+      title: "Compare planes accequibles y obtenga la mejor cobertura.",
+      zipCode: "Código Postal (Zip Code)"
+    },
+    english: {
+      title: "Compare affordable plans and get the best coverage.",
+      zipCode: "Zip Code"
+    }
   }
 
   const handleChange = (e) => {
@@ -15,17 +21,22 @@ const Question01 = ({ updateAnswer, currAnswer }) => {
     updateAnswer(val, val.length === 5);
   };
 
+  const q = question[language];
+
   return (
     <>
-      <h3>{ question[language] }</h3>
-      <input
-        onChange={e => handleChange(e)}
-        value={ currAnswer ? currAnswer : "" }
-        placeholder="Zip Code"
-        required 
-        type="number" 
-        maxLength="5"
-      />
+      <h3>{ q.title }</h3>
+      <label>
+        { q.zipCode }
+        <input
+          onChange={e => handleChange(e)}
+          value={ currAnswer ? currAnswer : "" }
+          placeholder={q.zipCode}
+          required 
+          type="number" 
+          maxLength="5"
+        />
+      </label>
     </>
   );
 };
