@@ -84,19 +84,25 @@ const Card = () => {
         return (
           <Question03 
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
-            currAnswer={info[3].answer} />
+            currAnswer={info[3].answer}
+            goToNextQuestion={goToNextQuestion}
+          />
         );
       case 4:
         return (
           <Question04
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
-            currAnswer={info[4].answer} />
+            currAnswer={info[4].answer}
+            goToNextQuestion={goToNextQuestion}
+          />
         );
       case 5:
         return (
           <Question05
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
-            currAnswer={info[5].answer} />
+            currAnswer={info[5].answer}
+            goToNextQuestion={goToNextQuestion}
+          />
         );
       case 6:
         return (

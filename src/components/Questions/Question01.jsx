@@ -17,7 +17,8 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
 
     updateAnswer(answer, isValid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answer, isValid])
+  }, [answer, isValid]);
+
   const question = {
     spanish: {
       title: "Compare planes accequibles y obtenga la mejor cobertura",
@@ -30,12 +31,6 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
       validation: "Please provide a valid zip code"
     }
   }
-
-  const handleChange = (e) => {
-    const val = e.target.value;
-
-    setAnswer(val);
-  };
 
   const validationMsg = () => {
     let msg = null;
@@ -63,7 +58,7 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
       <label>
         { q.zipCode }
         <input
-          onChange={e => handleChange(e)}
+          onChange={e => setAnswer(e.target.value)}
           value={ answer }
           placeholder={q.zipCode}
           required 
