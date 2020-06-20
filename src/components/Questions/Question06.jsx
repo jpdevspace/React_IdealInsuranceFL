@@ -3,7 +3,7 @@ import LanguageContext from "../../Context/LanguageContext";
 
 const Question06 = ({ updateAnswer, currAnswer }) => {
   const [language] = useContext(LanguageContext);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(currAnswer);
   
   useEffect(() => {
     updateAnswer(selected, true);
