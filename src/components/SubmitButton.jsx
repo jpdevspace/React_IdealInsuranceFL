@@ -2,18 +2,18 @@ import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
 
 
-const NextButton = ({ goToNextQuestion }) => {
+const SubmitButton = ({ handleFormSubmit }) => {
   const [ language ] = useContext(LanguageContext);
   const buttonText = {
-    spanish: "Siguiente",
-    english: "Next"
+    spanish: "Obtener Cotización",
+    english: "Get Quote"
   }
 
   return (
-    <button id="nextButton" onClick={goToNextQuestion}>
+    <button id="submitButton" onClick={handleFormSubmit}>
       {buttonText[language]}
     </button>
   );
 };
 
-export default NextButton;
+export default SubmitButton;

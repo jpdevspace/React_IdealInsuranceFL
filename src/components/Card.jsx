@@ -1,6 +1,7 @@
 import React, { useState }  from "react";
 import BackButton           from "./BackButton";
 import NextButton           from "./NextButton";
+import SubmitButton         from "./SubmitButton";
 import Progress             from "./Progress";
 import Question01           from "./Questions/Question01";
 import Question02           from "./Questions/Question02";
@@ -10,11 +11,11 @@ import Question05           from "./Questions/Question05";
 import Question06           from "./Questions/Question06";
 
 const Card = () => {
-  const [currQuestion, setCurrQuestion] = useState(6);
+  const [currQuestion, setCurrQuestion] = useState(1);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
-      answer: null,
+      answer: "",
       isAnswered: false
     },
     2: {
@@ -75,7 +76,8 @@ const Card = () => {
         return (
           <Question02 
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
-            currAnswer={info[2].answer} />
+            currAnswer={info[2].answer}
+          />
         );
       case 3:
         return (
@@ -105,7 +107,9 @@ const Card = () => {
         return (
           <Question01
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)} 
-            currAnswer={info[1].answer} />
+            currAnswer={info[1].answer}
+            goToNextQuestion={goToNextQuestion}
+          />
         );
     };
   };
@@ -137,6 +141,12 @@ const Card = () => {
   };
 
   // TODO JP: create a function to format the answers before sending email
+  const handleFormSubmit = () => {
+    // make sure all questions have valid answers
+    // format answers
+    // send form
+  }
+
 
   return (
     <div id="card">
@@ -151,7 +161,12 @@ const Card = () => {
       <div id="question">{questionComponent()}</div>
 
       <div id="card-bottomRow">
-        <NextButton goToNextQuestion={goToNextQuestion} />
+        {/* {
+          currQuestion !== numberOfQuestions
+          ? <NextButton goToNextQuestion={goToNextQuestion} />
+          : <SubmitButton handleFormSubmit={handleFormSubmit} />
+        }
+         */}
       </div>
     </div>
   );
