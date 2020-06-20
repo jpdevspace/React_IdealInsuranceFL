@@ -77,6 +77,7 @@ const Card = () => {
           <Question02 
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
             currAnswer={info[2].answer}
+            goToNextQuestion={goToNextQuestion}
           />
         );
       case 3:

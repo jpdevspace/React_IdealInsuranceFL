@@ -1,18 +1,23 @@
 import React, { useContext, useState, useEffect } from "react";
+import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
 
-const Question02 = ({ updateAnswer, currAnswer }) => {
+const Question02 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const [ selection, setSelection ] = useState(currAnswer);
   const [ language ] = useContext(LanguageContext);
+  const [ isValid, setIsValid ] = useState(false);
+  const [ showValidationMsg, setShowValidationMsg ] = useState(false);
 
   useEffect(() => {
     // Checks if user made a selection 
     // any of the values in the selection object is true.
     const isAnswered = Object.keys(selection).some(val => selection[val] === true);
     
+    setIsValid(isAnswered);
+  
     updateAnswer(selection, isAnswered);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ selection ]);
+  }, [ selection, isValid ]);
 
   const question = {
     spanish: "Qué tipo de plan está buscando? Marque todas las que apliquen.",
@@ -25,14 +30,16 @@ const Question02 = ({ updateAnswer, currAnswer }) => {
       dental: "Dental",
       vision: "Visión",
       medicare: "Medicare",
-      lifeInsurance: "Seguro de Vida"
+      lifeInsurance: "Seguro de Vida",
+      validation: "Por favor seleccione al menos una de las opciones"
     },
     english: {
       health: "Health",
       dental: "Dental",
       vision: "Vision",
       medicare: "Medicare",
-      lifeInsurance: "Life Insurance"
+      lifeInsurance: "Life Insurance",
+      validation: "Please select at least one of the options"
     }
   }
 
@@ -44,16 +51,34 @@ const Question02 = ({ updateAnswer, currAnswer }) => {
       [name]: checked
     });
   };
+  
+  const validationMsg = () => {
+    let msg = null;
+
+    if (showValidationMsg && !isValid) {
+      msg = options[language].validation;
+    }
+
+    return msg;
+  }
+
+
+  const handleNext = () => {
+    if (isValid) {
+      goToNextQuestion();
+    } else {
+      setShowValidationMsg(true);
+    }
+  }
 
   return (
     <>
       <h3>{question[language]}</h3>
-      <form id="use-radioList-plans">
         {
           Object.keys(currAnswer).map(opt => (
             <label htmlFor={opt} key={opt}>
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 type="checkbox"
                 id={opt}
                 name={opt}
@@ -63,7 +88,10 @@ const Question02 = ({ updateAnswer, currAnswer }) => {
             </label>
           ))
         }
-      </form>
+        <small>{ validationMsg()  }</small>
+        <div id="card-bottomRow">
+          <NextButton goToNextQuestion={handleNext} />
+        </div>
     </>
   );
 };
