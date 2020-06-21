@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import useRadioList from "./useRadioList";
+import React, { useContext, useEffect, useState } from "react";
+import useRadioList    from "./useRadioList";
+import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
 
-const Question04 = ({ updateAnswer, currAnswer }) => {
+const Question04 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const [ language ] = useContext(LanguageContext);
+  const [ isValid, setIsValid ] = useState(false);
+  const [ showValidationMsg, setShowValidationMsg ] = useState(false);
 
   const houseHoldSizeOpts = {
     1: "1",
@@ -24,19 +27,49 @@ const Question04 = ({ updateAnswer, currAnswer }) => {
     // Radio buttons can't be unselected, so if there's a selection
     // it's safe to make it true. Here selection is the label of the
     // selected element. e.g. "9"
+    setIsValid(selection.length > 0);
+
     updateAnswer(selection, selection.length > 0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selection]);
+  }, [selection, isValid]);
 
   const question = {
-    spanish: "Cuántas personas habitan en su casa?",
-    english: "How many people live in your household?",
+    spanish: {
+      label: "Cuántas personas habitan en su casa?",
+      validation: "Por favor seleccione una de las opciones"
+    },
+    english: {
+      label:  "How many people live in your household?",
+      validation: "Please select one of the options"
+    }
   };
+
+  const validationMsg = () => {
+    let msg = null;
+
+    if (showValidationMsg && !isValid) {
+      msg = question[language].validation;
+    }
+
+    return msg;
+  }
+
+  const handleNext = () => {
+    if (isValid) {
+      goToNextQuestion();
+    } else {
+      setShowValidationMsg(true);
+    }
+  }
 
   return (
     <>
-      <h3>{question[language]}</h3>
+      <h3>{question[language].label}</h3>
       <HouseHoldSizeRadioList />
+      <small>{ validationMsg()  }</small>
+      <div id="card-bottomRow">
+        <NextButton goToNextQuestion={handleNext} />
+      </div>
     </>
   );
 };

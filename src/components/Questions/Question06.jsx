@@ -1,82 +1,193 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import SubmitButton      from "../SubmitButton";
 import LanguageContext from "../../Context/LanguageContext";
 
-const Question06 = ({ updateAnswer, currAnswer }) => {
-  const [language] = useContext(LanguageContext);
-  const [selected, setSelected] = useState(currAnswer);
-  
-  useEffect(() => {
-    updateAnswer(selected, true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected])
+const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
+  const [ language  ] = useContext(LanguageContext);
+  const [ answer, setAnswer ] = useState(currAnswer);
+  const [ isValid, setIsValid ] = useState({
+    name: false,
+    dob: false,
+    phone: false,
+    gender: false
+  });
+  const [ showValidationMsg, setShowValidationMsg ] = useState({
+    name: false,
+    dob: false,
+    phone: false,
+    gender: false
+  });
 
-  const questions = {
+  useEffect(() => {
+    // if (answer.length === 5) {
+    //   setIsValid(true);
+    // } else {
+    //   setIsValid(false);
+    // }
+    // setIsValid(true);
+    updateAnswer(answer, true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answer, isValid])
+
+  const question = {
     english: {
       title: "Contact Information",
-      name: "Name",
-      dob: "Date of Birth",
-      gender: "Gender",
-      phone: "Phone Number"
+      name: {
+        label: "Name",
+        validation: "Please provide a valid name"
+      },
+      dob: {
+        label: "Date of Birth",
+        validation: "Provide a valid date of birth"
+      },
+      gender: {
+        label: "Gender",
+        validation: "Select your gender"
+      },
+      phone: {
+        label: "Phone Number",
+        validation: "Please provide a falid phone number. e.g. 123-456-7890"
+      }
     },
     spanish: {
-      title: "Información de Contacto",
-      name: "Nombre",
-      year: "Año",
-      gender: "Genero",
-      phone: "Número de Teléfono"
+      name: {
+        label: "Nombre",
+        validation: "Provea un nombre válido"
+      },
+      dob: {
+        label: "Fecha de Nacimiento",
+        validation: "Fecha de nacimiento inválida"
+      },
+      gender: {
+        label: "Género",
+        validation: "Seleccione un género"
+      },
+      phone: {
+        label: "Número de Teléfono",
+        validation: "Provea un número de teléfono valido. ejemplo: 123-456-7890"
+      }
     }
   }
 
   const handleChange = e => {
     const { value, name } = e.target;
 
-    setSelected({
-      ...selected,
+    setAnswer({
+      ...answer,
       [name]: value
     });
   };
 
-  const q = questions[language];
+  const validationMsg = (field) => {
+    let msg = null;
+
+    if (showValidationMsg[field] && !isValid[field]) {
+      msg = question[language][field].validation;
+    }
+
+    return msg;
+  }
+
+  const handleSubmitForm = () => {
+    if (isValid.name && isValid.dob && isValid.gender && isValid.phone) {
+      submitForm();
+    } else {
+      setShowValidationMsg({
+        name: true,
+        dob: true,
+        phone: true,
+        gender: true
+      });
+    }
+  }
+
+  const validateDOB = (dob) => new Date(dob) < new Date();
+
+  const validatePhone = (phoneNumber) => /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phoneNumber);
+
+  const validateField = (field) => {
+    switch(field) {
+      case "name": 
+        if (currAnswer.name.length > 1) {
+          setIsValid({...isValid, name: true });
+          setShowValidationMsg({ ...showValidationMsg, name: false });
+        } else {
+          setIsValid({...isValid, name: false });
+          setShowValidationMsg({ ...showValidationMsg, name: true });
+        }
+        break;
+
+      case "dob":
+        if (validateDOB(currAnswer.dob)) {
+          setIsValid({...isValid, dob: true });
+          setShowValidationMsg({ ...showValidationMsg, dob: false });
+        } else {
+          setIsValid({...isValid, dob: false });
+          setShowValidationMsg({ ...showValidationMsg, dob: true });
+        }
+        break;
+
+      case "phone":
+        if (validatePhone(currAnswer.phone)) {
+          setIsValid({...isValid, phone: true });
+          setShowValidationMsg({ ...showValidationMsg, phone: false });
+        } else {
+          setIsValid({...isValid, phone: false });
+          setShowValidationMsg({ ...showValidationMsg, phone: true });    
+        }
+        break;
+      
+      default: return;
+    }
+  }
+
+  const q = question[language];
 
   return (
     <>
       <h3>{q.title}</h3>
       <label>
-        { q.name }
+        { q.name.label }
         <input
           onChange={e => handleChange(e)}
+          onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.name : "" }
           name="name"
-          placeholder={q.name}
+          placeholder={q.name.label}
           required 
           type="text"
         />
+        <small>{ validationMsg("name")  }</small>
       </label>
       <label>
-        { q.phone }
+        { q.phone.label }
         <input
           onChange={e => handleChange(e)}
+          onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.phone : "" }
           name="phone"
-          placeholder={`${q.phone} e.g. 123-456-7890`}
+          placeholder={`${q.phone.label} e.g. 123-456-7890`}
           required 
           type="tel"
         />
       <small>Format: 123-456-7890</small>
+      <small>{ validationMsg("phone")  }</small>
       </label>
       <label>
-        { q.dob }
+        { q.dob.label }
         <input
           onChange={e => handleChange(e)}
+          onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.dob : "" }
           name="dob"
-          placeholder={q.dob}
+          placeholder={q.dob.label}
           required 
           type="date"
         />
+      <small>{ validationMsg("dob")  }</small>
       </label>
       <label>
-        { q.gender }
+        { q.gender.label }
         <select
           name="gender"
           value={currAnswer ? currAnswer.gender : "female"}
@@ -91,7 +202,9 @@ const Question06 = ({ updateAnswer, currAnswer }) => {
               {language === "english" ? "Male" : "Masculino"}
           </option>
         </select>
+        <small>{ validationMsg("gender")  }</small>
       </label>
+      <SubmitButton submitForm={handleSubmitForm}/>
     </>
   );
 };

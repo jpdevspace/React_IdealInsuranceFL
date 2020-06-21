@@ -52,7 +52,6 @@ const Question03 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
     return msg;
   }
 
-
   const handleNext = () => {
     if (isValid) {
       goToNextQuestion();
@@ -60,6 +59,7 @@ const Question03 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
       setShowValidationMsg(true);
     }
   }
+
   return (
     <>
       <h3>{question[language].label}</h3>

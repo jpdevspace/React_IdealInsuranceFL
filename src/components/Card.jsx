@@ -1,7 +1,5 @@
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
 import BackButton           from "./BackButton";
-import NextButton           from "./NextButton";
-import SubmitButton         from "./SubmitButton";
 import Progress             from "./Progress";
 import Question01           from "./Questions/Question01";
 import Question02           from "./Questions/Question02";
@@ -11,7 +9,7 @@ import Question05           from "./Questions/Question05";
 import Question06           from "./Questions/Question06";
 
 const Card = () => {
-  const [currQuestion, setCurrQuestion] = useState(1);
+  const [currQuestion, setCurrQuestion] = useState(6);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
@@ -49,13 +47,13 @@ const Card = () => {
       answer: {
         name: "",
         phone: "",
-        age: "",
         gender: "",
         dob: ""
       },
       isAnswered: false
     },
   });
+  useEffect(() => console.log("info >", info), [info])
   const numberOfQuestions = Object.keys(info).length;
 
   // Function to update the "answer" and "isAnswered" fields in state
@@ -63,7 +61,7 @@ const Card = () => {
     setInfo({
       ...info,
       [currQuestion]: {
-        ...[info[currQuestion]],
+        ...info[currQuestion],
         answer: newAnswer,
         isAnswered: newIsAnswered
       },
@@ -108,7 +106,9 @@ const Card = () => {
         return (
           <Question06
             updateAnswer={(newAnswer, isAnswered) => handleQuestionUpdate(newAnswer, isAnswered)}
-            currAnswer={info[6].answer} />
+            currAnswer={info[6].answer}
+            submitForm={handleSubmitForm}
+          />
         );
       default:
         return (
@@ -148,8 +148,21 @@ const Card = () => {
   };
 
   // TODO JP: create a function to format the answers before sending email
-  const handleFormSubmit = () => {
+  // inc. adding "age"
+  const handleSubmitForm = () => {
     // make sure all questions have valid answers
+    let allQuestionsAnswered = true;
+
+    for (let i = 1; i <= numberOfQuestions; i++) {
+      if (!info[i].isAnswered) {
+        allQuestionsAnswered = false;
+      }
+    }
+
+    if (allQuestionsAnswered) {
+      console.log("All Answers >>> ", info);  
+    }
+
     // format answers
     // send form
   }
@@ -164,17 +177,7 @@ const Card = () => {
           totalQuestions={numberOfQuestions}
         />
       </div>
-
       <div id="question">{questionComponent()}</div>
-
-      <div id="card-bottomRow">
-        {/* {
-          currQuestion !== numberOfQuestions
-          ? <NextButton goToNextQuestion={goToNextQuestion} />
-          : <SubmitButton handleFormSubmit={handleFormSubmit} />
-        }
-         */}
-      </div>
     </div>
   );
 };

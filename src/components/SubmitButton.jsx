@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
 
 
-const SubmitButton = ({ handleFormSubmit }) => {
+const SubmitButton = ({ submitForm }) => {
   const [ language ] = useContext(LanguageContext);
   const buttonText = {
     spanish: "Obtener Cotización",
@@ -10,7 +10,7 @@ const SubmitButton = ({ handleFormSubmit }) => {
   }
 
   return (
-    <button id="submitButton" onClick={handleFormSubmit}>
+    <button id="submitButton" onClick={submitForm}>
       {buttonText[language]}
     </button>
   );
