@@ -9,25 +9,17 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
     name: false,
     dob: false,
     phone: false,
-    gender: false
   });
   const [ showValidationMsg, setShowValidationMsg ] = useState({
     name: false,
     dob: false,
     phone: false,
-    gender: false
   });
 
   useEffect(() => {
-    // if (answer.length === 5) {
-    //   setIsValid(true);
-    // } else {
-    //   setIsValid(false);
-    // }
-    // setIsValid(true);
     updateAnswer(answer, true);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answer, isValid])
+  }, [answer])
 
   const question = {
     english: {
@@ -89,21 +81,25 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
   }
 
   const handleSubmitForm = () => {
-    if (isValid.name && isValid.dob && isValid.gender && isValid.phone) {
+    if (isValid.name && isValid.dob && isValid.phone) {
       submitForm();
     } else {
       setShowValidationMsg({
         name: true,
         dob: true,
-        phone: true,
-        gender: true
+        phone: true
       });
     }
   }
 
   const validateDOB = (dob) => new Date(dob) < new Date();
 
-  const validatePhone = (phoneNumber) => /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phoneNumber);
+  const validatePhone = (phoneNumber) => {
+    const formattedPhone = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phoneNumber);
+    const tenDigits = /[0-9]{10}/.test(phoneNumber);
+
+    return formattedPhone || tenDigits;
+  };
 
   const validateField = (field) => {
     switch(field) {

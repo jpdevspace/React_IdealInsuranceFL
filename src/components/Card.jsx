@@ -9,7 +9,7 @@ import Question05           from "./Questions/Question05";
 import Question06           from "./Questions/Question06";
 
 const Card = () => {
-  const [currQuestion, setCurrQuestion] = useState(6);
+  const [currQuestion, setCurrQuestion] = useState(1);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
@@ -149,6 +149,19 @@ const Card = () => {
 
   // TODO JP: create a function to format the answers before sending email
   // inc. adding "age"
+  const calcAge = (dateStr) => {
+    const today = new Date();
+    const dob = new Date(dateStr);
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth(); // To calculate if they already celebrated their bday this year
+
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+
+    return age;
+  }
+
   const handleSubmitForm = () => {
     // make sure all questions have valid answers
     let allQuestionsAnswered = true;
@@ -160,11 +173,10 @@ const Card = () => {
     }
 
     if (allQuestionsAnswered) {
+      info[6].answer.age = calcAge(info[6].answer.dob); // Adding an age field
       console.log("All Answers >>> ", info);  
+      // send form
     }
-
-    // format answers
-    // send form
   }
 
 
