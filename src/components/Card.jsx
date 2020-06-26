@@ -143,12 +143,8 @@ const Card = () => {
   
       return setCurrQuestion(nextQuestion);
     }
-
-    // Show message that questions hasn't been answered
   };
 
-  // TODO JP: create a function to format the answers before sending email
-  // inc. adding "age"
   const calcAge = (dateStr) => {
     const today = new Date();
     const dob = new Date(dateStr);
@@ -174,11 +170,10 @@ const Card = () => {
 
     if (allQuestionsAnswered) {
       info[6].answer.age = calcAge(info[6].answer.dob); // Adding an age field
-      console.log("All Answers >>> ", info);  
-      // send form
+
+      // TODO JP: send form
     }
   }
-
 
   return (
     <div id="card">

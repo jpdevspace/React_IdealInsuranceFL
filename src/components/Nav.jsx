@@ -22,13 +22,13 @@ const Nav = () => {
   }
 
   return (
-    <div>
+    <header>
       <h1>Ideal Insurance FL</h1>
       <div>
         <h3>{text[language]}: +1 (786) 808-8134</h3>
         <button onClick={changeLanguage}>{button[language]}</button>
       </div>
-    </div>
+    </header>
   );
 };
 

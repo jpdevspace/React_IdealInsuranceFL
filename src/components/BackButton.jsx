@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
+import { ButtonSmGrey } from "./Button";
 
+;
 
 const BackButton = ({ goToPrevQuestion }) => {
   const [ language ] = useContext(LanguageContext);
@@ -10,9 +12,9 @@ const BackButton = ({ goToPrevQuestion }) => {
   }
 
   return (
-    <button id="backButton" onClick={goToPrevQuestion}>
+    <ButtonSmGrey id="backButton" onClick={goToPrevQuestion}>
       {buttonText[language]}
-    </button>
+    </ButtonSmGrey>
   );
 };
 
