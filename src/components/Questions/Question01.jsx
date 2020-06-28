@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
+import NextButton      from "../NextButton";
+import { Card01, Img01, Text01, ZipCodeInput, ZipCodeLabel } from "./Card";
+import FillForm from "../../assets/fillForm.svg";
 
 const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const [ language ] = useContext(LanguageContext);
@@ -53,24 +55,25 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const q = question[language];
 
   return (
-    <>
-      <h3>{ q.title }</h3>
-      <label>
+    <Card01>
+      <Text01>{ q.title }</Text01>
+      <Img01 src={FillForm} alt="Person filling out a form" />
+
+      <ZipCodeLabel>
         { q.zipCode }
-        <input
+        <ZipCodeInput
           onChange={e => setAnswer(e.target.value)}
           value={ answer }
           placeholder={q.zipCode}
           required 
-          type="number" 
+          type="text"
+          pattern="[0-9]*"
           maxLength="5"
         />
         <small>{ validationMsg()  }</small>
-      </label>
-      <div id="card-bottomRow">
-        <NextButton goToNextQuestion={handleNext} />
-      </div>
-    </>
+      </ZipCodeLabel>
+      <NextButton goToNextQuestion={handleNext} />
+    </Card01>
   );
 };
 

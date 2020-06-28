@@ -25,6 +25,7 @@ export const ButtonLgBlue = styled(Button)`
   color: ${neutral[100]};
   padding: 12px 32px;
   font-size: ${typeScale.header3};
+  grid-area: button;
 
   &:hover {
     background-color: ${blue[100]};

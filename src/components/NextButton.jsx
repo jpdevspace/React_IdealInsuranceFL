@@ -10,7 +10,7 @@ const NextButton = ({ goToNextQuestion }) => {
   }
 
   return (
-    <ButtonLgBlue id="nextB" onClick={goToNextQuestion}>
+    <ButtonLgBlue onClick={goToNextQuestion}>
       {buttonText[language]}
     </ButtonLgBlue>
   );

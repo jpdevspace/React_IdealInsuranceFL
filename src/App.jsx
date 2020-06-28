@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Card from "./components/Card";
+import QuestionContainer from "./components/QuestionContainer";
 import Nav from "./components/Nav";
 import LanguageContext from "./Context/LanguageContext";
-
-import "./App.css";
+import { GlobalStyle } from "./utils";
 
 const App = () => {
   const languageHook = useState("english");
@@ -11,7 +10,8 @@ const App = () => {
   return (
     <LanguageContext.Provider value={languageHook}>
       <Nav />
-      <Card />
+      <QuestionContainer />
+      <GlobalStyle />
     </LanguageContext.Provider>
   );
 };

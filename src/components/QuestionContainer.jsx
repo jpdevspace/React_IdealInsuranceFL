@@ -1,14 +1,15 @@
-import React, { useState, useEffect }  from "react";
-import BackButton           from "./BackButton";
-import Progress             from "./Progress";
-import Question01           from "./Questions/Question01";
-import Question02           from "./Questions/Question02";
-import Question03           from "./Questions/Question03";
-import Question04           from "./Questions/Question04";
-import Question05           from "./Questions/Question05";
-import Question06           from "./Questions/Question06";
+import React, { useState }  from "react";
+import { Card, CardTopRow } from "./Questions/Card";
+import BackButton from "./BackButton";
+import Progress from "./Progress";
+import Question01 from "./Questions/Question01";
+import Question02 from "./Questions/Question02";
+import Question03 from "./Questions/Question03";
+import Question04 from "./Questions/Question04";
+import Question05 from "./Questions/Question05";
+import Question06 from "./Questions/Question06";
 
-const Card = () => {
+const QuestionContainer = () => {
   const [currQuestion, setCurrQuestion] = useState(1);
   const [info, setInfo] = useState({
     1: {
@@ -53,7 +54,7 @@ const Card = () => {
       isAnswered: false
     },
   });
-  useEffect(() => console.log("info >", info), [info])
+
   const numberOfQuestions = Object.keys(info).length;
 
   // Function to update the "answer" and "isAnswered" fields in state
@@ -176,17 +177,21 @@ const Card = () => {
   }
 
   return (
-    <div id="card">
-      <div id="card-topRow">
+    <Card>
+      <CardTopRow className="card-topRow">
         <BackButton goToPrevQuestion={goToPrevQuestion} />
-        <Progress
-          currQuestion={currQuestion}
-          totalQuestions={numberOfQuestions}
-        />
-      </div>
-      <div id="question">{questionComponent()}</div>
-    </div>
+        {
+          false
+          ? null
+          : <Progress
+              currQuestion={currQuestion}
+              totalQuestions={numberOfQuestions}
+            />
+        }
+      </CardTopRow>
+      {questionComponent()}
+    </Card>
   );
 };
 
-export default Card;
+export default QuestionContainer;
