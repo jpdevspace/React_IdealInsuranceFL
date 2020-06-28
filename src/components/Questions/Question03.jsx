@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { CardCentered, CardText } from "../Card";
 import useRadioList    from "./useRadioList";
 import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
@@ -61,14 +62,14 @@ const Question03 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   }
 
   return (
-    <>
-      <h3>{question[language].label}</h3>
+    <CardCentered>
+      <CardText>{question[language].label}</CardText>
       <IncomeRadioList />
       <small>{ validationMsg()  }</small>
       <div id="card-bottomRow">
         <NextButton goToNextQuestion={handleNext} />
       </div>
-    </>
+    </CardCentered>
   );
 };
 

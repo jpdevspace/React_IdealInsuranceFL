@@ -1,4 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+import {
+  CardCentered,
+  CardText,
+  TextInput,
+  TextInputLabel,
+  SmallText } from "../Card";
 import SubmitButton      from "../SubmitButton";
 import LanguageContext from "../../Context/LanguageContext";
 
@@ -140,11 +146,11 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
   const q = question[language];
 
   return (
-    <>
-      <h3>{q.title}</h3>
-      <label>
+    <CardCentered>
+      <CardText>{q.title}</CardText>
+      <TextInputLabel>
         { q.name.label }
-        <input
+        <TextInput
           onChange={e => handleChange(e)}
           onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.name : "" }
@@ -154,10 +160,10 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
           type="text"
         />
         <small>{ validationMsg("name")  }</small>
-      </label>
-      <label>
+      </TextInputLabel>
+      <TextInputLabel>
         { q.phone.label }
-        <input
+        <TextInput
           onChange={e => handleChange(e)}
           onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.phone : "" }
@@ -166,12 +172,12 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
           required 
           type="tel"
         />
-      <small>Format: 123-456-7890</small>
-      <small>{ validationMsg("phone")  }</small>
-      </label>
-      <label>
+        <SmallText>Format: 123-456-7890</SmallText>
+        <small>{ validationMsg("phone")  }</small>
+      </TextInputLabel>
+      <TextInputLabel>
         { q.dob.label }
-        <input
+        <TextInput
           onChange={e => handleChange(e)}
           onBlur={e => validateField(e.target.name)}
           value={ currAnswer ? currAnswer.dob : "" }
@@ -180,9 +186,9 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
           required 
           type="date"
         />
-      <small>{ validationMsg("dob")  }</small>
-      </label>
-      <label>
+        <small>{ validationMsg("dob")  }</small>
+      </TextInputLabel>
+      <TextInputLabel>
         { q.gender.label }
         <select
           name="gender"
@@ -199,9 +205,9 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
           </option>
         </select>
         <small>{ validationMsg("gender")  }</small>
-      </label>
+      </TextInputLabel>
       <SubmitButton submitForm={handleSubmitForm}/>
-    </>
+    </CardCentered>
   );
 };
 

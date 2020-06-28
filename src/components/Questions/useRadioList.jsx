@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CheckboxList, CheckboxInput } from "../Card";
 
 const useRadioList = (label, initialSelection, optsObj) => {
   const [ selected, setSelected ] = useState(initialSelection);
@@ -6,21 +7,23 @@ const useRadioList = (label, initialSelection, optsObj) => {
 
   const RadioList = () => (
     <form id={id}>
-      {
-        Object.keys(optsObj).map(opt => (
-          <label htmlFor={opt} key={opt}>
-            <input
-              onChange={(e) => setSelected(e.target.value)}
-              type="radio"
-              id={opt}
-              name={id}
-              value={optsObj[opt]}
-              checked={selected === optsObj[opt]}
-            />
-            { optsObj[opt] }
-          </label>
-        ))
-      }
+      <CheckboxList>
+        {
+          Object.keys(optsObj).map(opt => (
+            <label htmlFor={opt} key={opt}>
+              <CheckboxInput
+                onChange={(e) => setSelected(e.target.value)}
+                type="radio"
+                id={opt}
+                name={id}
+                value={optsObj[opt]}
+                checked={selected === optsObj[opt]}
+              />
+              { optsObj[opt] }
+            </label>
+          ))
+        }
+      </CheckboxList>
     </form>
   );
 

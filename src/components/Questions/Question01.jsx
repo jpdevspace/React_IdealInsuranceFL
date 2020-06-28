@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import LanguageContext from "../../Context/LanguageContext";
 import NextButton      from "../NextButton";
-import { Card01, Img01, Text01, ZipCodeInput, ZipCodeLabel } from "./Card";
+import { Card01, Img01, CardText, TextInput, TextInputLabel, SmallText } from "../Card";
 import FillForm from "../../assets/fillForm.svg";
 
 const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
@@ -56,12 +56,12 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
 
   return (
     <Card01>
-      <Text01>{ q.title }</Text01>
+      <CardText>{ q.title }</CardText>
       <Img01 src={FillForm} alt="Person filling out a form" />
 
-      <ZipCodeLabel>
+      <TextInputLabel>
         { q.zipCode }
-        <ZipCodeInput
+        <TextInput
           onChange={e => setAnswer(e.target.value)}
           value={ answer }
           placeholder={q.zipCode}
@@ -71,7 +71,7 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
           maxLength="5"
         />
         <small>{ validationMsg()  }</small>
-      </ZipCodeLabel>
+      </TextInputLabel>
       <NextButton goToNextQuestion={handleNext} />
     </Card01>
   );

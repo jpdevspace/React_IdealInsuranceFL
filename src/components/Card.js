@@ -1,10 +1,17 @@
 import styled from "styled-components";
-import { blue, neutral, typeScale } from "../../utils";
+import { 
+  blue,
+  green,
+  grey,
+  neutral,
+  typeScale
+} from "../utils";
 
 export const Card = styled.div`
   box-shadow: 0px 5px 16px rgba(0, 0, 0, 0.25);
   background-color: ${neutral[100]};
   width: 90%;
+  max-width: 650px;
   margin: 0 auto;
   border-radius: 5px;
 `;
@@ -20,8 +27,8 @@ export const CardTopRow = styled.div`
 export const Card01 = styled.div`
   display: flex;
   flex-flow: column nowrap;
-	justify-content: space-around;
-	align-items: center;
+	justify-content: space-between;
+  align-items: center;
   height: 500px;
 }
   @media screen and (min-width: 600px) {
@@ -41,7 +48,7 @@ export const Card01 = styled.div`
   }
 `;
 
-export const Text01 = styled.h1`
+export const CardText = styled.h1`
   grid-area: title;
   text-align: center;
   max-width: 65%;
@@ -57,16 +64,50 @@ export const Img01 = styled.img`
   }
 `;
 
-export const ZipCodeLabel = styled.label`
+export const TextInputLabel = styled.label`
   grid-area: input;
 	display: flex;
   flex-flow: column;
   align-items: center;
 `;
 
-export const ZipCodeInput = styled.input`
-  font-size: 1.25rem;
+export const TextInput = styled.input`
+  font-size: ${typeScale.header4};
+  text-align: center;
   padding: 0.5em 1.5em;
   border-radius: 50px;
-  border: 3px solid ${blue[200]}
+  border: 3px solid ${grey[100]};
+  min-width: 300px;
+`;
+
+export const ProgressStatus = styled.div`
+  font-size: ${typeScale.header3};
+  background-color: ${props => props.isLast ? green[100] : grey[100]};
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+export const CardCentered = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+	justify-content: space-between;
+  align-items: center;
+  height: 500px;
+`;
+
+export const CheckboxList = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  height: 230px;
+  justify-content: space-evenly;
+`;
+
+export const CheckboxInput = styled.input`
+  margin-right: 7px;
+`;
+
+export const SmallText = styled.small`
+  font-size: ${typeScale.helperText};
+  color: ${grey[300]};
+  margin-top: 5px;
 `;

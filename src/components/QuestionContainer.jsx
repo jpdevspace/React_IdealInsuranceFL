@@ -1,5 +1,5 @@
 import React, { useState }  from "react";
-import { Card, CardTopRow } from "./Questions/Card";
+import { Card, CardTopRow } from "./Card";
 import BackButton from "./BackButton";
 import Progress from "./Progress";
 import Question01 from "./Questions/Question01";
@@ -10,7 +10,7 @@ import Question05 from "./Questions/Question05";
 import Question06 from "./Questions/Question06";
 
 const QuestionContainer = () => {
-  const [currQuestion, setCurrQuestion] = useState(1);
+  const [currQuestion, setCurrQuestion] = useState(6);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",

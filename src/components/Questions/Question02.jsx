@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { CardCentered, CardText, CheckboxList, CheckboxInput } from "../Card";
 import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
 
@@ -72,12 +73,13 @@ const Question02 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   }
 
   return (
-    <>
-      <h3>{question[language]}</h3>
+    <CardCentered>
+      <CardText>{question[language]}</CardText>
+      <CheckboxList>
         {
           Object.keys(currAnswer).map(opt => (
             <label htmlFor={opt} key={opt}>
-              <input
+              <CheckboxInput
                 onChange={handleChange}
                 type="checkbox"
                 id={opt}
@@ -88,11 +90,12 @@ const Question02 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
             </label>
           ))
         }
+      </CheckboxList>
         <small>{ validationMsg()  }</small>
         <div id="card-bottomRow">
           <NextButton goToNextQuestion={handleNext} />
         </div>
-    </>
+    </CardCentered>
   );
 };
 

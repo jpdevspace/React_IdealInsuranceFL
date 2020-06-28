@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { blue, grey, neutral, typeScale } from "../utils";
+import { blue, green, grey, neutral, typeScale } from "../utils";
 
 const Button = styled.button`
   border: 0;
@@ -26,6 +26,7 @@ export const ButtonLgBlue = styled(Button)`
   padding: 12px 32px;
   font-size: ${typeScale.header3};
   grid-area: button;
+  margin-bottom: 1.5em;
 
   &:hover {
     background-color: ${blue[100]};
@@ -47,6 +48,18 @@ export const ButtonSmGrey = styled(Button)`
   }
 
   &:active {
-    background-color: ${grey[200]};
+    background-color: ${grey[300]};
+  }
+`;
+
+export const ButtonSubmit = styled(ButtonLgBlue)`
+  background-color: ${green[200]};
+  
+  &:hover {
+    background-color: ${green[100]};
+  }
+
+  &:active {
+    background-color: ${green[300]};
   }
 `;

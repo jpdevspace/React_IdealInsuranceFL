@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { ButtonSubmit } from "./Button";
 import LanguageContext from "../Context/LanguageContext";
 
 
@@ -10,9 +11,9 @@ const SubmitButton = ({ submitForm }) => {
   }
 
   return (
-    <button id="submitButton" onClick={submitForm}>
+    <ButtonSubmit id="submitButton" onClick={submitForm}>
       {buttonText[language]}
-    </button>
+    </ButtonSubmit>
   );
 };
 
