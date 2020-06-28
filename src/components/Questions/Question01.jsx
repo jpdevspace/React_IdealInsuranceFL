@@ -24,12 +24,12 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const question = {
     spanish: {
       title: "Compare planes accequibles y obtenga la mejor cobertura",
-      zipCode: "Código Postal (Zip Code)",
+      zipCode: "Cuál es su código postal (zip code)",
       validation: "Por favor proveer un código postal válido"
     },
     english: {
       title: "Compare affordable plans and get the best coverage",
-      zipCode: "Zip Code",
+      zipCode: "What's your zip code?",
       validation: "Please provide a valid zip code"
     }
   }

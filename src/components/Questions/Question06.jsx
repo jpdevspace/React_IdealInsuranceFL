@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   CardCentered,
   CardText,
+  DropdownMenu,
   TextInput,
   TextInputLabel,
   SmallText } from "../Card";
@@ -190,7 +191,7 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
       </TextInputLabel>
       <TextInputLabel>
         { q.gender.label }
-        <select
+        <DropdownMenu
           name="gender"
           value={currAnswer ? currAnswer.gender : "female"}
           onChange={e => handleChange(e)}>
@@ -203,7 +204,7 @@ const Question06 = ({ updateAnswer, currAnswer, submitForm }) => {
             value="male">
               {language === "english" ? "Male" : "Masculino"}
           </option>
-        </select>
+        </DropdownMenu>
         <small>{ validationMsg("gender")  }</small>
       </TextInputLabel>
       <SubmitButton submitForm={handleSubmitForm}/>
