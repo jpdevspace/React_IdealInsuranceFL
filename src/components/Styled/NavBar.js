@@ -3,12 +3,17 @@ import { typeScale, blue, neutral } from "../../utils";
 
 export const NavBar = styled.header`
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
   width: 90%;
   max-width: 900px;
   margin: 0 auto 1em auto;
+
+  @media screen and (min-width: 650px) {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
 `;
 
 export const IdealTitle = styled.h1`
