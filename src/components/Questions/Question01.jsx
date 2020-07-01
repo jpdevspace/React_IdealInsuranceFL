@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import LanguageContext from "../../Context/LanguageContext";
 import NextButton      from "../NextButton";
-import { Card01, Img01, CardText, TextInput, TextInputLabel, SmallText } from "../Card";
-import FillForm from "../../assets/fillForm.svg";
+import { Card01, Img01, CardText, TextInput, TextInputLabel } from "../Styled/Card";
+import FillFormSVG from "../../assets/fillForm.svg";
 
 const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const [ language ] = useContext(LanguageContext);
@@ -57,7 +57,7 @@ const Question01 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   return (
     <Card01>
       <CardText>{ q.title }</CardText>
-      <Img01 src={FillForm} alt="Person filling out a form" />
+      <Img01 src={FillFormSVG} alt="Person filling out a form" />
 
       <TextInputLabel>
         { q.zipCode }

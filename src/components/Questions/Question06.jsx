@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   TextInput,
   TextInputLabel,
-  SmallText } from "../Card";
+  SmallText } from "../Styled/Card";
 import SubmitButton      from "../SubmitButton";
 import LanguageContext from "../../Context/LanguageContext";
 

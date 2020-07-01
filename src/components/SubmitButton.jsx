@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ButtonSubmit } from "./Button";
+import { ButtonSubmit } from "./Styled/Button";
 import LanguageContext from "../Context/LanguageContext";
 
 

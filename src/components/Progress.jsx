@@ -1,5 +1,5 @@
 import React from "react";
-import { ProgressStatus } from "./Card";
+import { ProgressStatus } from "./Styled/Card";
 
 const Progress = ({ currQuestion, totalQuestions }) => {
   return (

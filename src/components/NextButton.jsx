@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
-import { ButtonLgBlue } from "./Button";
+import { ButtonLgBlue } from "./Styled/Button";
 
 const NextButton = ({ goToNextQuestion }) => {
   const [ language ] = useContext(LanguageContext);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckboxList, CheckboxInput } from "../Card";
+import { CheckboxList, CheckboxInput } from "../Styled/Card";
 
 const useRadioList = (label, initialSelection, optsObj) => {
   const [ selected, setSelected ] = useState(initialSelection);

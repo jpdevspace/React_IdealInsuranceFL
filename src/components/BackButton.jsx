@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
-import { ButtonSmGrey } from "./Button";
+import { ButtonSmGrey } from "./Styled/Button";
 
 ;
 

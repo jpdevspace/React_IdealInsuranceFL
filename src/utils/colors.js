@@ -18,7 +18,10 @@ export const green = {
 };
 
 export const yellow = {
-  100: "#FBFF85"
+  100: "#FBFF85",
+  200: "#FFE493",
+  300: "#FFDD75",
+  400: "#FFD558"
 };
 
 export const neutral = {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { blue, green, grey, neutral, typeScale } from "../utils";
+import { blue, green, grey, neutral, typeScale, yellow } from "../../utils";
 
 const Button = styled.button`
   border: 0;
@@ -61,5 +61,18 @@ export const ButtonSubmit = styled(ButtonLgBlue)`
 
   &:active {
     background-color: ${green[300]};
+  }
+`;
+
+export const ButtonLanguage = styled(ButtonLgBlue)`
+  background-color: ${yellow[300]};
+  color: ${neutral[500]};
+
+  &:hover {
+    background-color: ${yellow[200]};
+  }
+
+  &:active {
+    background-color: ${yellow[400]};
   }
 `;

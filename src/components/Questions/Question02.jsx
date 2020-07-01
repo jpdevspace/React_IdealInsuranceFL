@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { CardCentered, CardText, CheckboxList, CheckboxInput } from "../Card";
+import { CardCentered, CardText, CheckboxList, CheckboxInput } from "../Styled/Card";
 import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CardCentered, CardText } from "../Card";
+import { CardCentered, CardText } from "../Styled/Card";
 import useRadioList from "./useRadioList";
 import NextButton   from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";

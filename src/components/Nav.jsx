@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import LanguageContext from "../Context/LanguageContext";
+import { NavBar, LanguageContainer, Logo, PhoneNumText } from "./Styled/NavBar";
+import { ButtonLanguage } from "./Styled/Button";
+import BlueLogo from "../assets/IdealInsuranceLogo-03.png";
 
 const Nav = () => {
   const [ language, setLanguage ] = useContext(LanguageContext);
@@ -22,13 +25,13 @@ const Nav = () => {
   }
 
   return (
-    <header>
-      <h1>Ideal Insurance FL</h1>
-      <div>
-        <h3>{text[language]}: +1 (786) 808-8134</h3>
-        <button onClick={changeLanguage}>{button[language]}</button>
-      </div>
-    </header>
+    <NavBar>
+      <Logo src={BlueLogo} alt="Ideal Financial Services Logo" />
+      <LanguageContainer>
+        <PhoneNumText>{text[language]}: +1 (786) 808-8134</PhoneNumText>
+        <ButtonLanguage onClick={changeLanguage}>{button[language]}</ButtonLanguage>
+      </LanguageContainer>
+    </NavBar>
   );
 };
 

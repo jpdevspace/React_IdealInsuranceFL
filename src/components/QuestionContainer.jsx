@@ -1,5 +1,5 @@
 import React, { useState }  from "react";
-import { Card, CardTopRow } from "./Card";
+import { Card, CardTopRow } from "./Styled/Card";
 import BackButton from "./BackButton";
 import Progress from "./Progress";
 import Question01 from "./Questions/Question01";
@@ -8,9 +8,10 @@ import Question03 from "./Questions/Question03";
 import Question04 from "./Questions/Question04";
 import Question05 from "./Questions/Question05";
 import Question06 from "./Questions/Question06";
+import ThankYou from "./Questions/Thankyou";
 
 const QuestionContainer = () => {
-  const [currQuestion, setCurrQuestion] = useState(6);
+  const [currQuestion, setCurrQuestion] = useState(1);
   const [info, setInfo] = useState({
     1: {
       question: "Zip Code",
@@ -48,7 +49,7 @@ const QuestionContainer = () => {
       answer: {
         name: "",
         phone: "",
-        gender: "",
+        gender: "female",
         dob: ""
       },
       isAnswered: false
@@ -111,6 +112,9 @@ const QuestionContainer = () => {
             submitForm={handleSubmitForm}
           />
         );
+      case "thankyou":
+        return <ThankYou />;
+      
       default:
         return (
           <Question01
@@ -159,7 +163,7 @@ const QuestionContainer = () => {
     return age;
   }
 
-  const handleSubmitForm = () => {
+  const handleSubmitForm = async () => {
     // make sure all questions have valid answers
     let allQuestionsAnswered = true;
 
@@ -170,23 +174,65 @@ const QuestionContainer = () => {
     }
 
     if (allQuestionsAnswered) {
-      info[6].answer.age = calcAge(info[6].answer.dob); // Adding an age field
+      // Adding an age field
+      const age = calcAge(info[6].answer.dob);
 
-      // TODO JP: send form
+      const msg = {
+        '1': `
+          Name: ${info[6].answer.name}
+          Phone: ${info[6].answer.phone}
+          Gender: ${info[6].answer.gender}
+          DOB: ${info[6].answer.dob}
+          Age: ${age}`,
+        '2': `${info[1].question}: ${info[1].answer}`,
+        '3': `
+          ${info[2].question}: 
+          Health: ${info[2].answer.health}
+          Dental: ${info[2].answer.dental}
+          Vision: ${info[2].answer.vision}
+          Medicare: ${info[2].answer.medicare}
+          Life Insurance: ${info[2].answer.lifeInsurance}`,
+        '4': `${info[3].question}: ${info[3].answer}`,
+        '5': `${info[4].question}: ${info[4].answer}`,
+        '6': `${info[5].question}: ${info[5].answer}`,
+      }
+
+      const url = "https://5zwzvnhoj5.execute-api.us-east-1.amazonaws.com/Production/quote";
+      const data = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(msg)
+      };
+
+      fetch(url, data)
+        .then(res => res.json())
+        .then(response => {
+          console.log("Wujuuu from AWS >>>", response)
+          setCurrQuestion("thankyou");
+        })
+        .catch(err => console.error("Error bad >>>", err))
+
+      
     }
   }
-
+  const isFirstOrLastQuestion = currQuestion === 1 || currQuestion === "thankyou"
   return (
     <Card>
       <CardTopRow className="card-topRow">
-        <BackButton goToPrevQuestion={goToPrevQuestion} />
         {
-          false
+          isFirstOrLastQuestion
           ? null
-          : <Progress
-              currQuestion={currQuestion}
-              totalQuestions={numberOfQuestions}
-            />
+          : (
+            <>
+              <BackButton goToPrevQuestion={goToPrevQuestion} />
+              <Progress
+                currQuestion={currQuestion}
+                totalQuestions={numberOfQuestions}
+              />
+            </>
+          )
         }
       </CardTopRow>
       {questionComponent()}

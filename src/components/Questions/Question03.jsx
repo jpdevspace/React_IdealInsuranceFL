@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CardCentered, CardText } from "../Card";
+import { CardCentered, CardText } from "../Styled/Card";
 import useRadioList    from "./useRadioList";
 import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
@@ -10,14 +10,14 @@ const Question03 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
   const [ showValidationMsg, setShowValidationMsg ] = useState(false);
 
   const incomeOpts = {
-    tier1: "0 - 15000",
-    tier2: "15001 - 20000",
-    tier3: "20001 - 25000",
-    tier4: "25001 - 30000",
-    tier5: "30001 - 35000",
-    tier6: "35001 - 40000",
-    tier7: "45001 - 50000",
-    tier8: "50001+",
+    tier1: "$0 - $15,000",
+    tier2: "$15,001 - $20,000",
+    tier3: "$20,001 - $25,000",
+    tier4: "$25,001 - $30,000",
+    tier5: "$30,001 - $35,000",
+    tier6: "$35,001 - $40,000",
+    tier7: "$45,001 - $50,000",
+    tier8: "$50,001+",
   };
 
   const [ selection, IncomeRadioList ] = useRadioList("Income", currAnswer, incomeOpts);

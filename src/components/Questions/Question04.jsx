@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CardCentered, CardText } from "../Card";
+import { CardCentered, CardText } from "../Styled/Card";
 import useRadioList    from "./useRadioList";
 import NextButton      from "../NextButton";
 import LanguageContext from "../../Context/LanguageContext";
@@ -19,7 +19,7 @@ const Question04 = ({ updateAnswer, currAnswer, goToNextQuestion }) => {
     7: "7",
     8: "8",
     9: "9",
-    10: "10"
+    10: "10 or more"
   };
 
   const [ selection, HouseHoldSizeRadioList ] = useRadioList("House Hold Size", currAnswer, houseHoldSizeOpts);
