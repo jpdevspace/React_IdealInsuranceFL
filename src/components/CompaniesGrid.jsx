@@ -11,20 +11,21 @@ import WellcareLogo from "../assets/wellcare-logo.png";
 
 const CompaniesGrid = () => {
   const companies = [
-    { logo: FloridaBlueLogo, name: "Florida Blue"},
-    { logo: BrightHealthLogo, name: "Bright Health"},
-    { logo: FreedomLogo, name: "Freedom Health"},
+    { logo: FloridaBlueLogo, name: "Florida Blue", size: "cover" },
+    { logo: BrightHealthLogo, name: "Bright Health", size: "cover" },
+    { logo: FreedomLogo, name: "Freedom Health" },
     { logo: AmbetterLogo, name: "Ambetter" },
-    { logo: MolinaLogo, name: "Molina Healthcare" },
-    { logo: WellcareLogo, name: "WellCare" },
+    { logo: MolinaLogo, name: "Molina Healthcare", size: "cover" },
+    { logo: WellcareLogo, name: "WellCare", size: "cover" },
     { logo: OscarLogo, name: "Oscar" },
-    { logo: HumanaLogo, name: "Humana"},
+    { logo: HumanaLogo, name: "Humana" },
   ];
 
   const gridContent = companies.map(company => (
     <GridItem 
       key={company.name} 
-      bg={company.logo} />
+      bg={company.logo} 
+      size={company.size ? company.size : null} />
   ));
 
   return (
