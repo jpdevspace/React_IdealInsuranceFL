@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import CompaniesGrid from "./components/CompaniesGrid";
 import LanguageContext from "./Context/LanguageContext";
 import { GlobalStyle } from "./utils";
+import ContactUs from "./components/ContactUs";
 
 const App = () => {
   const languageHook = useState("english");
@@ -15,6 +16,7 @@ const App = () => {
       <QuestionContainer />
       <CompaniesGrid />
       <AboutUs />
+      <ContactUs />
       <GlobalStyle />
     </LanguageContext.Provider>
   );
