@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import QuestionContainer from "./components/QuestionContainer";
+import AboutUs from "./components/AboutUs";
 import Nav from "./components/Nav";
 import CompaniesGrid from "./components/CompaniesGrid";
 import LanguageContext from "./Context/LanguageContext";
@@ -13,6 +14,7 @@ const App = () => {
       <Nav />
       <QuestionContainer />
       <CompaniesGrid />
+      <AboutUs />
       <GlobalStyle />
     </LanguageContext.Provider>
   );

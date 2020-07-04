@@ -5,6 +5,7 @@ export const Grid = styled.div`
   height: 400px;
   margin: 3em auto;
   display: grid;
+  gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
   @media screen and (min-width: 650px) {
@@ -22,7 +23,6 @@ export const GridItem = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: ${props => props.size ? props.size : "contain"};
-  // background-size: contain;
   background-image: url(${props => props.bg});
   
   @media screen and (min-width: 650px) {
