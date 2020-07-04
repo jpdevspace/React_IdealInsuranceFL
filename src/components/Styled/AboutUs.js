@@ -32,10 +32,18 @@ export const AboutUsBody = styled.div`
 export const AboutUsText = styled.p`
   font-family: 'Roboto', sans-serif;
   font-size: ${typeScale.header3};
-  width: 35%;
+  width: 90%;
+  
+  @media screen and (min-width: 900px) {
+    width: 35%;
+  }
 `;
 
 export const AboutUsPic = styled.img`
-  width: 500px;
-  border-radius: 5px;
+  width: 100%;
+
+  @media screen and (min-width: 650px) {
+    width: 500px;
+    border-radius: 5px;
+  }
 `;
