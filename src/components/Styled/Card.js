@@ -32,7 +32,7 @@ export const Card01 = styled.div`
 }
   @media screen and (min-width: 600px) {
     display: grid;
-    height: 60vh;
+    min-height: 60vh;
   
     grid-template-areas:
       'title  image'
