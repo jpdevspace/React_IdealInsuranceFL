@@ -28,7 +28,7 @@ const Nav = () => {
     <NavBar>
       <Logo src={BlueLogo} alt="Ideal Financial Services Logo" />
       <LanguageContainer>
-        <PhoneNumText>{text[language]}: +1 (407) 588-9296</PhoneNumText>
+        <PhoneNumText href="tel:+14075889296">{text[language]}:+1 (407) 588-9296</PhoneNumText>
         <ButtonLanguage onClick={changeLanguage}>{button[language]}</ButtonLanguage>
       </LanguageContainer>
     </NavBar>
