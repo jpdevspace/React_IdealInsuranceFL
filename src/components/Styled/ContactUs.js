@@ -46,5 +46,4 @@ export const ContactUsLinks = styled.a`
   font-size: ${typeScale.header4};
   text-decoration: none;
   color: ${blue[300]};
-  margin-left: 1em;
 `;
