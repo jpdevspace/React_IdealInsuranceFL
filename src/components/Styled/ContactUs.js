@@ -6,7 +6,7 @@ export const ContactUsSection = styled.section`
   margin: 0 auto;
   background-color: ${yellow[200]};
   color: ${blue[300]};
-  padding: 2em;
+
   @media screen and (min-width: 900px) {
     width: 900px;
   }
