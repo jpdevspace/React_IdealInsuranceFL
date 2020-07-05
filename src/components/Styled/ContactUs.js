@@ -26,8 +26,12 @@ export const ContactUsText = styled.p`
   font-family: 'Roboto', sans-serif;
   font-size: ${typeScale.header3};
   width: 90%;
-  
-  @media screen and (min-width: 900px) {
-    width: 35%;
-  }
+`;
+
+export const ContactUsLinks = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-size: ${typeScale.header3};
+  text-decoration: none;
+  color: ${blue[300]};
+  margin-left: 1em;
 `;
