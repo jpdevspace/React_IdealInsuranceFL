@@ -10,5 +10,6 @@ so users can get a customized quote for health insurance plans.
 [screenshot]: https://github.com/jpdevspace/React_IdealInsuranceFL/blob/master/src/assets/screenshot.png "Screenshot of app"
 
 ## Tech
-Frontend: This app was created with React (Hooks and Context API) and the CSS is brought to you by Styled Components, CSS grid and Flexbox.
-Backend: The app is deployed on AWS, it's a Serverless app using AWS Lambda and AWS API Gateway.
+* Frontend: This app was created with React (Hooks and Context API) and the CSS is brought to you by Styled Components, CSS grid and Flexbox.
+
+* Backend: The app is deployed on AWS. It's a Serverless app using AWS Lambda, AWS API Gateway and continuous deploy setup with AWS Amplify.
