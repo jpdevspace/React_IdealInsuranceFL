@@ -8,7 +8,7 @@ import { GlobalStyle } from "./utils";
 import ContactUs from "./components/ContactUs";
 
 const App = () => {
-  const languageHook = useState("english");
+  const languageHook = useState("spanish");
 
   return (
     <LanguageContext.Provider value={languageHook}>
