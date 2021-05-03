@@ -206,15 +206,15 @@ const QuestionContainer = () => {
         body: JSON.stringify(msg)
       };
 
-      fetch(url, data)
-        .then(res => res.json())
-        .then(response => {
-          console.log("Wujuuu from AWS >>>", response)
-          setCurrQuestion("thankyou");
-        })
-        .catch(err => console.error("Error bad >>>", err))
+      // fetch(url, data)
+      //   .then(res => res.json())
+      //   .then(response => {
+      //     console.log("Wujuuu from AWS >>>", response)
+      //     setCurrQuestion("thankyou");
+      //   })
+      //   .catch(err => console.error("Error bad >>>", err))
 
-      
+      setCurrQuestion("thankyou");
     }
   }
   const isFirstOrLastQuestion = currQuestion === 1 || currQuestion === "thankyou"
