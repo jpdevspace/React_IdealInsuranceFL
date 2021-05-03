@@ -7,7 +7,7 @@ so users can get a customized quote for health insurance plans.
 
 ![alt text][screenshot]
 
-[screenshot]: https://github.com/jpdevspace/React_IdealInsuranceFL/blob/master/src/assets/screenshot.png "Screenshot of app"
+[screenshot]: https://github.com/jpdevspace/React_IdealInsuranceFL/blob/main/src/assets/screenshot.png "Screenshot of app"
 
 ## Tech
 * Frontend: This app was created with React (Hooks and Context API) and the CSS is brought to you by Styled Components, CSS grid and Flexbox.
