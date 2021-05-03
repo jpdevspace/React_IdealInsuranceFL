@@ -3,7 +3,7 @@
 This is the official website for Ideal Financial Insurance. It has a web form/questionnaire 
 so users can get a customized quote for health insurance plans.
 
-## See it live on: jpdevspace-ideal-financial-services.netlify.app
+## See it live on: https://jpdevspace-ideal-financial-services.netlify.app
 
 ![alt text][screenshot]
 
