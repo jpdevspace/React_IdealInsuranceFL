@@ -150,18 +150,18 @@ const QuestionContainer = () => {
     }
   };
 
-  const calcAge = (dateStr) => {
-    const today = new Date();
-    const dob = new Date(dateStr);
-    let age = today.getFullYear() - dob.getFullYear();
-    const m = today.getMonth() - dob.getMonth(); // To calculate if they already celebrated their bday this year
+  // const calcAge = (dateStr) => {
+  //   const today = new Date();
+  //   const dob = new Date(dateStr);
+  //   let age = today.getFullYear() - dob.getFullYear();
+  //   const m = today.getMonth() - dob.getMonth(); // To calculate if they already celebrated their bday this year
 
-    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-      age--;
-    }
+  //   if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+  //     age--;
+  //   }
 
-    return age;
-  }
+  //   return age;
+  // }
 
   const handleSubmitForm = async () => {
     // make sure all questions have valid answers
@@ -175,36 +175,36 @@ const QuestionContainer = () => {
 
     if (allQuestionsAnswered) {
       // Adding an age field
-      const age = calcAge(info[6].answer.dob);
+      // const age = calcAge(info[6].answer.dob);
 
-      const msg = {
-        '1': `
-          Name: ${info[6].answer.name}
-          Phone: ${info[6].answer.phone}
-          Gender: ${info[6].answer.gender}
-          DOB: ${info[6].answer.dob}
-          Age: ${age}`,
-        '2': `${info[1].question}: ${info[1].answer}`,
-        '3': `
-          ${info[2].question}: 
-          Health: ${info[2].answer.health}
-          Dental: ${info[2].answer.dental}
-          Vision: ${info[2].answer.vision}
-          Medicare: ${info[2].answer.medicare}
-          Life Insurance: ${info[2].answer.lifeInsurance}`,
-        '4': `${info[3].question}: ${info[3].answer}`,
-        '5': `${info[4].question}: ${info[4].answer}`,
-        '6': `${info[5].question}: ${info[5].answer}`,
-      }
+      // const msg = {
+      //   '1': `
+      //     Name: ${info[6].answer.name}
+      //     Phone: ${info[6].answer.phone}
+      //     Gender: ${info[6].answer.gender}
+      //     DOB: ${info[6].answer.dob}
+      //     Age: ${age}`,
+      //   '2': `${info[1].question}: ${info[1].answer}`,
+      //   '3': `
+      //     ${info[2].question}: 
+      //     Health: ${info[2].answer.health}
+      //     Dental: ${info[2].answer.dental}
+      //     Vision: ${info[2].answer.vision}
+      //     Medicare: ${info[2].answer.medicare}
+      //     Life Insurance: ${info[2].answer.lifeInsurance}`,
+      //   '4': `${info[3].question}: ${info[3].answer}`,
+      //   '5': `${info[4].question}: ${info[4].answer}`,
+      //   '6': `${info[5].question}: ${info[5].answer}`,
+      // }
 
-      const url = "https://5zwzvnhoj5.execute-api.us-east-1.amazonaws.com/Production/quote";
-      const data = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(msg)
-      };
+      // const url = "https://5zwzvnhoj5.execute-api.us-east-1.amazonaws.com/Production/quote";
+      // const data = {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(msg)
+      // };
 
       // fetch(url, data)
       //   .then(res => res.json())
